@@ -11,7 +11,7 @@ const PageView = styled.div`
 `;
 
 const Title = styled.h1`
-	padding: 40px;
+	padding: 40px 40px 0px 40px ;
 `;
 
 const ContentView = styled.div`
