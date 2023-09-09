@@ -2,8 +2,10 @@ import React, { useState, useCallback, useEffect } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import { useDropzone } from 'react-dropzone';
 import { useFilePicker } from 'use-file-picker';
+import { useNavigate } from "react-router-dom";
 import styled from 'styled-components';
 import Papa from 'papaparse'
+import Button from '../components/Button';
 
 const Dropzone = styled.div`
 	height: 150px;
@@ -26,6 +28,7 @@ const UploadPage = () => {
 		multiple: false,
 		accept: '.csv'
 	});
+	const navigate = useNavigate();
 
 	const onDrop = useCallback((acceptedFiles) => {
 		const uploadFile = acceptedFiles[0];
@@ -37,7 +40,14 @@ const UploadPage = () => {
 	const { getRootProps, getInputProps } = useDropzone({
 		onDrop,
 		accept: '.csv',
-	})
+	});
+
+	const navigateToNextPage = () => {
+		navigate('/result', {state: {
+			fileData
+		}
+		});
+	};
 
 	useEffect(() => {
 		if (file) {
@@ -74,6 +84,10 @@ const UploadPage = () => {
 					)
 				}
 			</Dropzone>
+			{
+
+				fileData.length > 0 && (<Button text="Validar" onClick={navigateToNextPage} />)
+			}
 		</PageWrapper>
 	);
 }
