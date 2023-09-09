@@ -67,7 +67,6 @@ const UploadPage = () => {
 		}
 	}, [plainFiles])
 
-	useEffect(() => console.log(fileData), [fileData]);
 	return (
 		<PageWrapper>
 			<Dropzone {...getRootProps()}>
